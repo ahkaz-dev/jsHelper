@@ -41,7 +41,7 @@ input{
 	background: #e0dede;
 	justify-content: center;
 	display: flex;
-	margin: 20px auto;
+	margin: 20px auto 0px auto;
 	padding: 12px;
 	border: none;
 	outline: none;
@@ -57,7 +57,7 @@ button{
 	background: #573b8a;
 	font-size: 1em;
 	font-weight: bold;
-	margin-top: 30px;
+	margin-top: 15px;
 	outline: none;
 	border: none;
 	border-radius: 5px;
@@ -87,4 +87,28 @@ button:hover{
 }
 #chk:checked ~ .signup label{
 	transform: scale(.6);
+}
+.form_span_help {
+	color: rgb(196, 196, 196);
+	font-size: 12px;
+	display: block;
+	text-align: center;
+}
+.back-button {
+	display: inline-block;
+	padding: 10px 20px;
+	font-size: 16px;
+	color: rgb(71, 6, 6);
+	background-color: #e1e1e1;
+	text-align: center;
+	text-decoration: none;
+	border-radius: 5px;
+	transition: opacity 0.3s;
+}
+
+.back-button:hover {
+	opacity: 0.75;
+}
+.button-back {
+	margin-right: 20px;
 }

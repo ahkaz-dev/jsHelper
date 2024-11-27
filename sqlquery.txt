@@ -1,0 +1,9 @@
+CREATE TABLE Users (
+    UserId int NOT NULL AUTO_INCREMENT,
+    Login varchar(25) NOT NULL,
+    Password varchar(16) NOT NULL,
+    Email varchar(255) NOT NULL,
+    UserRole varchar(25),
+
+    PRIMARY KEY (UserId)
+);
