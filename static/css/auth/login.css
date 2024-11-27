@@ -112,3 +112,21 @@ button:hover{
 .button-back {
 	margin-right: 20px;
 }
+.notifi-account-reg-apply {
+	color: white;
+    position: absolute;
+    top: 30;
+    left: 30;
+    background: green;
+    padding: 10px;
+    border-radius: 5px;
+}
+.notifi-account-reg-undo {
+	color: white;
+    position: absolute;
+    top: 30;
+    left: 30;
+    background: rgb(128, 0, 15);
+    padding: 10px;
+    border-radius: 5px;
+}

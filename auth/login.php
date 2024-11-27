@@ -5,16 +5,15 @@ $message = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $login = trim($_POST['login']);
-    $password = trim($_POST['password']);
-    $email = trim($_POST['email']);
+    $login = trim($_POST['reglogin']);
+    $password = trim($_POST['regpassword']);
+    $email = trim($_POST['regemail']);
 
     try {
-        $stmt = $pdo->prepare("INSERT INTO users (Login, Password, Email, UserRole) VALUES (:login, :password, :email, :role)");
+        $stmt = $pdo->prepare("INSERT INTO users (Login, Password, Email, UserRole) VALUES (:login, :password, :email, 'Пользователь')");
         $stmt->bindParam(':login', $login, PDO::PARAM_STR);
         $stmt->bindParam(':password', $password, PDO::PARAM_STR);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-        $stmt->bindParam(':role', null, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             $message = "Вы создали аккаут";
@@ -47,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $message = "Ошибка: " . $e->getMessage();
     }
 }
-
+require_once '../db/dublicate.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -59,9 +58,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<title>Авторизация</title>
 </head>
 <body>
-<?php if ($message): ?>
-        <p><strong><?php echo htmlspecialchars($message); ?></strong></p>
-<?php endif; ?> 
+<?php 
+    if ($message) {
+        if (str_contains($message, "Вы")) {
+            echo "<p><strong class='notifi-account-reg-apply'>$message</strong></p>";
+        } else if (str_contains($message, "Ошибка")) {
+            echo "<p><strong class='notifi-account-reg-undo'>$message</strong></p>";
+        }
+    }
+?>
 <div class="button-back">
 			<a href="../index.php" class="back-button">&larrhk;</a>
 </div>
@@ -69,14 +74,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		<input type="checkbox" id="chk" aria-hidden="true">
 
 			<div class="signup">
-				<form>
+				<form method='post'>
 					<label for="chk" aria-hidden="true">Создать</label>
-					<input type="text" name="login" placeholder="Логин" required="">
+					<input type="text" name="reglogin" placeholder="Логин" required="">
 						<span class="form_span_help">
 							(англ. буквы, цифры и знак подчеркивания)
 						</span>
-					<input type="email" name="email" placeholder="Email" required="">
-					<input type="password" name="password" placeholder="Пароль" required="">
+					<input type="email" name="regemail" placeholder="Email" required="">
+					<input type="password" name="regpassword" placeholder="Пароль" required="">
 						<span class="form_span_help">
 							(минимум 8 символов)
 						</span>

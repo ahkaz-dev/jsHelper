@@ -30,8 +30,8 @@ session_start();
         </ul>
       </div>
       <div class="right">
-        <span class="curly-brace">{</span>
-        <h1 class="logo">Js-helper</h1>
+        <span class="curly-brace">}</span>
+        <p class="logo">Js-<br>helper</p>
       </div>
     </main>
   </div>

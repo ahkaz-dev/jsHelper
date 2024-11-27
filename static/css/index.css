@@ -1,3 +1,11 @@
+
+/* Главный шрифт */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* Кирилицца стилизованный шрифт */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Press+Start+2P&display=swap');
+
+
 /* styles.css */
 body {
     margin: 0;
@@ -24,7 +32,11 @@ body {
   .small-text {
     font-size: 12px;
     color: #888;
-  }
+    font-family: "Press Start 2P", serif;
+    text-decoration: underline;
+    text-decoration-color: #9B98B7;
+
+    }
   
   .menu {
     display: flex;
@@ -51,46 +63,67 @@ body {
     align-items: center;
     flex: 1;
     padding: 20px;
+    background-image: url('./image/svg/backtriangle.svg');
+    background-repeat: no-repeat;
+    background-position: right;
   }
   
   .left {
-    flex: 1;
+    padding-right: 16%;
   }
   
   .topics {
     list-style: none;
     padding: 0;
     margin: 0;
-    font-size: 24px;
+    font-size: 70px;
     font-weight: 300;
+    color: #080523;
   }
   
   .topics li {
     margin-bottom: 15px;
+    transition: all 0.3s ease;
+
   }
-  
+
+  .topics li:hover {
+    cursor: pointer;
+  }
+  .topics li:nth-child(1):hover {
+    background-color: rgb(246, 213, 251);
+  }
+  .topics li:nth-child(2):hover {
+    background-color: rgb(251, 213, 217);
+  }
+  .topics li:nth-child(3):hover {
+    background-color: rgb(213, 251, 228);
+  }
+  .topics li:nth-child(4):hover {
+    background-color: rgb(213, 216, 251);
+  }
+
   .right {
-    display: flex;
+    display: contents;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     flex: 1;
     position: relative;
+    padding-right: 255px;
   }
   
   .curly-brace {
-    font-size: 150px;
-    color: #1a1a1a;
-    position: absolute;
-    left: -50px;
-    top: 50%;
-    transform: translateY(-50%);
+    font-size: 555px;
+    color: #201D3F;
+    padding-right: 2%;
   }
   
   .logo {
-    font-size: 48px;
+    font-size: 70px;
     font-weight: bold;
-    color: #1a1a1a;
+    color: #201D3F;
     margin: 0;
+    font-family: "Press Start 2P", serif;
   }
   
