@@ -72,7 +72,6 @@ require_once '../db/dublicate.php';
 </div>
 	<div class="main">
 		<input type="checkbox" id="chk" aria-hidden="true">
-
 			<div class="signup">
 				<form method='post'>
 					<label for="chk" aria-hidden="true">Создать</label>
