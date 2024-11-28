@@ -10,15 +10,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['regemail']);
 
     try {
-        $stmt = $pdo->prepare("INSERT INTO users (Login, Password, Email, UserRole) VALUES (:login, :password, :email, 'Пользователь')");
-        $stmt->bindParam(':login', $login, PDO::PARAM_STR);
-        $stmt->bindParam(':password', $password, PDO::PARAM_STR);
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt = $pdo->prepare("SELECT * FROM users WHERE Login=:login AND Password=:password");
+        $stmt->execute(['login' => $login, 'password' => $password]);
+        $user = $stmt->fetch();
 
-        if ($stmt->execute()) {
-            $message = "Вы создали аккаут";
+        if (!empty($user)) {
+            $message = "Ошибка такой пользователь уже существует";
         } else {
-            $message = "Ошибка регистрации";
+            $stmt = $pdo->prepare("INSERT INTO users (Login, Password, Email, UserRole) VALUES (:login, :password, :email, 'Пользователь')");
+            $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+            $stmt->bindParam(':password', $password, PDO::PARAM_STR);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+    
+            if ($stmt->execute()) {
+                $message = "Вы создали аккаут";
+            } else {
+                $message = "Ошибка регистрации";
+            }
         }
     } catch (PDOException $e) {
         $message = "Ошибка: " . $e->getMessage();
@@ -28,14 +36,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = trim($_GET['passInput']);
     try {
         $stmt = $pdo->prepare("SELECT * FROM users WHERE Login=:login AND Password=:password");
-        $stmt->bindParam(':login', $login, PDO::PARAM_STR);
-        $stmt->bindParam(':password', $password, PDO::PARAM_STR);
-
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE Login=:login AND Password=:password");
         $stmt->execute(['login' => $login, 'password' => $password]);
-        $user = $stmt->fetch();
+        $userlogin = $stmt->fetch();
 
-        if (!empty($user)) {
+        if (!empty($userlogin)) {
+            $_SESSION["auth-header"] = end($userlogin);
+            $_SESSION["auth-header-login"] = $userlogin['Login'];
+
             echo '<script type="text/javascript">';
             echo 'window.location.href = "http://localhost/jshelper";';
             echo '</script>';
@@ -75,12 +82,12 @@ require_once '../db/dublicate.php';
 			<div class="signup">
 				<form method='post'>
 					<label for="chk" aria-hidden="true">Создать</label>
-					<input type="text" name="reglogin" placeholder="Логин" required="">
+					<input type="text" name="reglogin" placeholder="Логин" required>
 						<span class="form_span_help">
 							(англ. буквы, цифры и знак подчеркивания)
 						</span>
-					<input type="email" name="regemail" placeholder="Email" required="">
-					<input type="password" name="regpassword" placeholder="Пароль" required="">
+					<input type="email" name="regemail" placeholder="Email" required>
+					<input type="password" name="regpassword" placeholder="Пароль" required minlength=8>
 						<span class="form_span_help">
 							(минимум 8 символов)
 						</span>
@@ -89,7 +96,7 @@ require_once '../db/dublicate.php';
 			</div>
 
 			<div class="login">
-				<form>
+				<form method='GET'>
 					<label for="chk" aria-hidden="true">Войти</label>
 					<input type="text" name="loginInput" placeholder="Логин" required="">
 					<input type="password" name="passInput" placeholder="Пароль" required="">

@@ -1,5 +1,28 @@
 <?php 
 session_start();
+require_once './db/db.php';
+$message = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $usermessage = trim($_POST['userbest_message']);
+  $username = trim($_POST['userbest_name']);
+
+  try {
+    $stmt = $pdo->prepare("INSERT INTO wishesbyusers (Message, Whosend) VALUES (:message, :whosend)");
+    $stmt->bindParam(':message', $usermessage, PDO::PARAM_STR);
+    $stmt->bindParam(':whosend', $username, PDO::PARAM_STR);
+
+    if ($stmt->execute()) {
+        $message = "Сообщение отправлено";
+    } else {
+        $message = "Ошибка отправки";
+    }
+  } catch (PDOException $e) {
+    $message = "Ошибка: " . $e->getMessage();
+  }
+}
+require_once './db/dublicatemessage.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,20 +33,42 @@ session_start();
   <link rel="stylesheet" href="static/css/index.css">
 </head>
 <body>
+<?php 
+    if ($message) {
+        if (str_contains($message, "отправлено")) {
+            echo "<p><strong class='notifi-account-reg-apply'>$message</strong></p>";
+        } else if (str_contains($message, "Ошибка")) {
+            echo "<p><strong class='notifi-account-reg-undo'>$message</strong></p>";
+        }
+    }
+?>
   <div class="container" id="up">
     <header class="top-bar">
       <span class="small-text"><a  target="_blank" href="https://www.php.net/">сделано с помощью php</a></span>
       <div class="menu">
         <button class="menu-btn">Помощь</button>
-        <button class="menu-btn">Уроки</button>
-        <button class="menu-btn" onclick="location.href='auth/login.php'">Войти</button>
+        <button class="menu-btn" onclick="location.href='lessons/noauth/vedenie.php'">Уроки</button>
+        <?php 
+        if(!isset($_SESSION["auth-header-login"])) {
+          ?>
+          <button class="menu-btn" onclick="location.href='auth/login.php'">Войти</button>
+        <?php
+        } else {
+          ?>
+          <button class="menu-btn" onclick="location.href='auth/account.php'">Аккаунт</button>
+          <button class="menu-btn" onclick="location.href='auth/logout.php'">Выход</button>
+        <?php
+        }
+        ?>
         <button class="menu-btn" id="up" onclick="location.href='#up'">}}}</button>
       </div>
     </header>
     <main class="content">
       <div class="left">
         <ul class="topics">
-          <li>Введение</li>
+          <li>
+            <a href="lessons/noauth/vedenie.php">Введение</a>
+          </li>
           <li>Основы JavaScript</li>
           <li>Качество кода</li>
           <li>Типы данных</li>
@@ -58,38 +103,66 @@ session_start();
   <div class="footer-container">
     <div class="footer-sidebar">
       <ul>
-        <li>Помощь</li>
-        <li>О нас</li>
-        <li>Вход</li>
-        <li>Помощь</li>
+        <a href="#">
+          <li>Уроки</li>
+        </a>
+        <a href="#">
+          <li>О нас</li>
+        </a>
+        <a href="#">
+          <li>Вход</li>
+        </a>
+        <a href="#">
+          <li>Помощь</li>
+        </a>
       </ul>
     </div>
+    <div class="b-f-sidebar">
+    <p>Заметки и любые пожелания</p>
     <div class="footer-content">
-      <h3>Заметки и любые пожелания</h3>
-      <form>
-        <input type="text" placeholder="Пожелания" class="form-input">
-        <input type="text" placeholder="Ваш юзернейм" class="form-input">
+      <form method='POST'>
+        <textarea placeholder="Пожелания" name='userbest_message' class="form-input" rows="10" cols="33" required maxlength='550'></textarea>
+        <input type="text" placeholder="Ваш юзернейм" name='userbest_name' class="form-input" maxlength='25' required>
         <button type="submit" class="submit-button">Отправить</button>
+        <br>
         <button type="reset" class="reset-button">Очистить форму</button>
       </form>
     </div>
+    </div>
+
   </div>
   <footer class="footer-note">
     <p>open source project</p>
   </footer>
-  <script>
-  window.onscroll = function() {myFunction()};
+<script>
+  window.onscroll = function() {scrollcheck()};
 
   var header = document.getElementsByClassName("top-bar");
+  var notif = document.getElementsByClassName("notifi-account-reg-apply");
   var sticky = header.offsetTop;
 
-  function myFunction() {
+  function scrollcheck() {
     if (window.pageYOffset > sticky) {
       header.classList.add("sticky");
+      notif.classList.add("sticky");
     } else {
       header.classList.remove("sticky");
+      notif.classList.remove("sticky");
     }
   }
+
+  function showNotification() {
+    var notifications = document.querySelectorAll('.notifi-account-reg-apply, .notifi-account-reg-undo');
+    notifications.forEach(function(notification) {
+        notification.classList.add('visible');
+
+        setTimeout(function() {
+            notification.classList.remove('visible');
+        }, 8000); // 8 секунд
+    });
+  }
+
+window.onload = showNotification;
 </script> 
 </body>
 </html>

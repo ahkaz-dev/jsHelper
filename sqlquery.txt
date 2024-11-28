@@ -7,3 +7,11 @@ CREATE TABLE Users (
 
     PRIMARY KEY (UserId)
 );
+
+CREATE TABLE Wishesbyusers (
+    WishesId int NOT NULL AUTO_INCREMENT,
+    Message varchar(555) NOT NULL,
+    Whosend varchar(25) NOT NULL,
+
+    PRIMARY KEY (WishesId)
+);

@@ -11,7 +11,7 @@ html, body {
 /* styles.css */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Inter", serif;
   color: #1a1a1a;
 }
 
@@ -31,6 +31,7 @@ body {
   background: #f0f0f0;
   border-bottom: 1px solid #ddd;
   position: sticky;
+  z-index: 2;
 }
 
 .small-text {
@@ -90,10 +91,12 @@ body {
   color: #080523;
 }
 
+.topics li { padding: 0px; }
+.topics li a { margin: 0px; display: block; width: 100%; height: 100%; text-decoration: none; color:unset;}
+
 .topics li {
   margin-bottom: 15px;
   transition: all 0.3s ease;
-
 }
 
 .topics li:hover {
@@ -207,43 +210,54 @@ body {
 
 .footer-container {
   display: flex;
-  padding: 20px;
+  padding: 50px;
   background-color: #f2f2f2;
   border-top: 1px solid #ddd;
+  justify-content: center;
 }
 
 .footer-sidebar {
   flex: 0 0 150px;
-  padding-right: 20px;
+  padding-right: 30%;
 }
 
-.footer-sidebar ul {
+.footer-sidebar ul a {
   list-style: none;
-  padding: 0;
+  text-decoration: none;
   margin: 0;
+}
+
+.footer-sidebar li:nth-child(1) {
+  margin-top: 0px;
 }
 
 .footer-sidebar li {
   font-size: 1rem;
   color: #0a0a23;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
+  transition: all 0.3s ease;
+}
+
+.footer-sidebar li:hover {
+  background-color: #9B98B7;
+  color: white;
 }
 
 .footer-content {
   flex: 1;
-  background-color: #fff;
-  padding: 20px;
   border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  width: 841px;
 }
 
-.footer-content h3 {
+.b-f-sidebar p {
   font-size: 1.2rem;
-  margin-bottom: 15px;
   color: #0a0a23;
+  font-weight: 600;
+  margin-top: 0px;
 }
 
 .form-input {
+  font-family: "Inter", sans-serif;
   display: block;
   width: 100%;
   padding: 10px;
@@ -252,6 +266,17 @@ body {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  resize: none;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  border: 2px solid #0a0a23;
+  outline: none;
+}
+.form-input:hover {
+  border: 2px solid #0a0a23;
+  outline: none;
 }
 
 .submit-button {
@@ -263,10 +288,12 @@ body {
   cursor: pointer;
   border-radius: 4px;
   margin-right: 10px;
+  width: 100%;
+  transition: all 0.4s ease;
 }
 
 .submit-button:hover {
-  background-color: #1c1c3d;
+  background-color: #0e0e63;
 }
 
 .reset-button {
@@ -277,6 +304,9 @@ body {
   font-size: 1rem;
   cursor: pointer;
   border-radius: 4px;
+  width: 100%;
+  margin-top: 5px;
+  transition: all 0.4s ease;
 }
 
 .reset-button:hover {
@@ -288,6 +318,7 @@ body {
   padding: 10px;
   background-color: #f2f2f2;
   border-top: 1px solid #ddd;
+  font-family: "Press Start 2P", serif;
 }
 
 .footer-note p {
@@ -296,4 +327,47 @@ body {
   color: #0a0a23;
   letter-spacing: 0.1rem;
   text-transform: uppercase;
+}
+
+.notifi-stick {
+  position: sticky;
+}
+
+.notifi-account-reg-apply {
+	color: white;
+
+  position: fixed;
+  top: 10%;
+  left: 3%;
+
+  background: green;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1;
+
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.notifi-account-reg-undo {
+	color: white;
+  top: 30;
+  left: 30;
+  background: rgb(128, 0, 15);
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1;
+
+  position: sticky;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.notifi-account-reg-apply, .notifi-account-reg-undo {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.notifi-account-reg-apply.visible, .notifi-account-reg-undo.visible {
+  opacity: 1;
 }
