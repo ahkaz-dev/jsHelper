@@ -31,9 +31,9 @@ session_start();
         <svg viewBox="0 0 16 16" width="20px" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M1 6V15H6V11C6 9.89543 6.89543 9 8 9C9.10457 9 10 9.89543 10 11V15H15V6L8 0L1 6Z" fill="#000000"></path> </g></svg>
         </button>
       </div>
-    </header>
+</header>
     <header style="padding-left: 220px; margin-bottom: 20px;">
-    <a href="http://localhost/jshelper">Главная</a> → <a href="lessons.html">Уроки</a> → Введение
+    <a href="http://localhost/jshelper">Главная</a> → <a href="http://localhost/jshelper/lessons/lessons-hub.php">Уроки</a> → Введение
     </header>
     <div class="layout">
         <!-- Sidebar with anchors -->
@@ -49,11 +49,11 @@ session_start();
         </div>
         <!-- Content -->
         <div class="content">
+            <div style="text-align: end; font-size: 85%; opacity: 0.75;">12 мая 2024</div>
             <h1>Введение в JavaScript</h1>
             <div class="metadata">
-                <div>Сложность: <span>Начальный</span></div>
-                <div>Время чтения: <span>15 минут</span></div>
-                <div >12 мая 2023</div>
+                <div>Сложность: <span style="color: mediumseagreen;">Легко</span></div>
+                <div>Время чтения: <span style="color: #f3b937;">15 минут</span></div>
             </div>
             <h2 id="o-acnhor">Что такое JavaScript?</h2>
             <p>JavaScript — это мощный язык программирования, который используется для создания интерактивных и динамических веб-страниц. Он является основным компонентом в веб-разработке, наряду с HTML и CSS.</p>
@@ -96,7 +96,7 @@ console.log("Привет, мир!");</code></pre>
             <h2 id="t-acnhor">Что делает JavaScript особенным?</h2>
             <p>Как минимум, три сильные стороны JavaScript:</p>
             <ol style="list-style-type: disc;" class="end-li">
-            <li>Полная интеграция с HTML/CSS.</li>'
+            <li>Полная интеграция с HTML/CSS.</li>
             <li>Простые вещи делаются просто.</li>
             <li>Поддерживается всеми основными браузерами и включён по умолчанию.</li>
             </ol>

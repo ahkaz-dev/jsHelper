@@ -32,7 +32,7 @@ header a:hover {
 .sidebar {
     width: 370px;
     padding: 20px;
-    background-color: #ebe1ff;
+    background-color: #f1ecfa63;
     border-radius: 5px;
     margin-right: 20px;
     margin-left: auto;
@@ -51,7 +51,6 @@ header a:hover {
 }
 .content {
     flex-grow: 1;
-    background: #f6f6ff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.617);

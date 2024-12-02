@@ -47,7 +47,7 @@ require_once './db/dublicatemessage.php';
       <span class="small-text"><a  target="_blank" href="https://www.php.net/">сделано с помощью php</a></span>
       <div class="menu">
         <button class="menu-btn">Помощь</button>
-        <button class="menu-btn" onclick="location.href='lessons/noauth/vedenie.php'">Уроки</button>
+        <button class="menu-btn" onclick="location.href='lessons/lessons-hub.php'">Уроки</button>
         <?php 
         if(!isset($_SESSION["auth-header-login"])) {
           ?>
@@ -67,7 +67,13 @@ require_once './db/dublicatemessage.php';
       <div class="left">
         <ul class="topics">
           <li>
-            <a href="lessons/noauth/vedenie.php">Введение</a>
+            <?php 
+            if(!isset($_SESSION["auth-header-login"])) { ?>
+              <a href="lessons/noauth/vedenie.php">Введение</a>
+            <?php
+            } else { ?>
+              <a href="lessons/authi/prod-vedenie.php">Введение+</a>
+            <?php } ?>
           </li>
           <li>Основы JavaScript</li>
           <li>Качество кода</li>
@@ -103,7 +109,7 @@ require_once './db/dublicatemessage.php';
   <div class="footer-container">
     <div class="footer-sidebar">
       <ul>
-        <a href="lessons/noauth/vedenie.php">
+        <a href="lessons/lessons-hub.php">
           <li>Уроки</li>
         </a>
         <a href="#">

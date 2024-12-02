@@ -6,8 +6,9 @@ if (!isset($_SESSION["auth-header"])) {
     echo "<br>";
 } else if (isset($_SESSION["auth-header"])) {
     if ($_SESSION["auth-header"] == "Пользователь") {
-        echo "Обовите роль доступа к курсам";
-        echo "<br>Вы: {$_SESSION["auth-header"]}";
+        // echo "Обовите роль доступа к курсам";
+        // echo "<br>Вы: {$_SESSION["auth-header"]}";
+        require_once('\xampp\htdocs\jsHelper\errors\403.php');
 
     } else if ($_SESSION["auth-header"] == "Продвинутый") {?>
         <!DOCTYPE html>

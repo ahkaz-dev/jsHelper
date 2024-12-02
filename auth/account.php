@@ -14,10 +14,12 @@ if (isset($_SESSION["auth-header-login"])) { ?>
     <header class="top-bar">
           <span class="small-text"><a  target="_blank" href="https://www.php.net/"></a></span>
           <div class="menu">
-            <button class="menu-btn" onclick="location.href='http://localhost/jshelper'">Главная</button>
-            <button class="menu-btn" onclick="location.href='#'">Уроки</button>
+            <button class="menu-btn" onclick="location.href='http://localhost/jshelper/lessons/lessons-hub.php'">Уроки</button>
             <button class="menu-btn" onclick="location.href='logout.php'">Выход</button>
-          </div>
+            <button class="menu-btn" id="up" onclick="location.href='http://localhost/jshelper'">
+                <svg viewBox="0 0 16 16" width="20px" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M1 6V15H6V11C6 9.89543 6.89543 9 8 9C9.10457 9 10 9.89543 10 11V15H15V6L8 0L1 6Z" fill="#000000"></path> </g></svg>
+            </button>  
+        </div>
     </header>
     <main>
     <div class="user-info">
