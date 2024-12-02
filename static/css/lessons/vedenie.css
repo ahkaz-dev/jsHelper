@@ -1,0 +1,141 @@
+/* Главный шрифт */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* Кирилицца стилизованный шрифт */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Press+Start+2P&display=swap');
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fafafa;
+    color: #333;
+}
+header {
+    font-size: 14px;
+    margin: 20px;
+    color: #666;
+}
+header a {
+    text-decoration: none;
+    color: #666;
+}
+header a:hover {
+    text-decoration: underline;
+}
+.layout {
+    display: flex;
+    margin: 0 auto;
+    padding: 20px;
+}
+.sidebar {
+    width: 370px;
+    padding: 20px;
+    background-color: #ebe1ff;
+    border-radius: 5px;
+    margin-right: 20px;
+    margin-left: auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.sidebar .anchor {
+    top: 15px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #666;
+    font-weight: bold;
+}
+.sidebar .anchor:hover {
+    color: #000;
+    cursor: pointer;
+}
+.content {
+    flex-grow: 1;
+    background: #f6f6ff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.617);
+}
+.metadata {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 20px;
+}
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #000;
+}
+h2 {
+    font-size: 18px;
+    margin-top: 20px;
+    color: #444;
+}
+p {
+    margin: 15px 0;
+    line-height: 1.6;
+}
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+code {
+    font-family: Consolas,"courier new";
+    color: crimson;
+    background-color: #f1f1f1;
+    padding: 2px;
+    font-size: 105%;
+}
+.end-li li {
+    margin-bottom: 10px;
+}
+.sticky-div {
+    position: sticky;
+    top: 25px;
+}
+
+.top-bar {
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+    margin: 0px;
+  }
+  
+  .small-text {
+    font-size: 12px;
+    color: #888;
+    font-family: "Press Start 2P", serif;
+    text-decoration: underline;
+    text-decoration-color: #9B98B7;
+    }
+  
+  .menu {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .menu-btn {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px 15px;
+    margin-left: 42px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-color: #9B98B7;
+    border-radius: 21px;
+    font-size: 20px;
+    border-width: 2px;
+  }
+  
+  .menu-btn:hover {
+    background: #f0f0f0;
+  }
