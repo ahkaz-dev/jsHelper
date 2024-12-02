@@ -103,13 +103,13 @@ require_once './db/dublicatemessage.php';
   <div class="footer-container">
     <div class="footer-sidebar">
       <ul>
-        <a href="#">
+        <a href="lessons/noauth/vedenie.php">
           <li>Уроки</li>
         </a>
         <a href="#">
           <li>О нас</li>
         </a>
-        <a href="#">
+        <a href="auth/login.php">
           <li>Вход</li>
         </a>
         <a href="#">
