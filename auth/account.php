@@ -1,5 +1,7 @@
 <?php 
 session_start();
+require_once './service/userlogger.php';
+
 
 if (isset($_SESSION["auth-header-login"])) { ?>
     <!DOCTYPE html>
@@ -57,7 +59,12 @@ if (isset($_SESSION["auth-header-login"])) { ?>
         <p>Действия с аккаунтом:</p>
         <a href="service/updatepassword.php">Обновить пароль</a>
         <br><br>
-        <a href="service/confirmemail.php">Подтвердить почту</a>
+        <?php 
+        if (strcasecmp($_SESSION["auth-header-role"], "Пользователь") === 0) { ?>
+            <a href="service/confirmaccount.php">Подтвердить аккаунт</a>
+        <?php } else {?>
+            <a href="service/confirmaccount.php" style="pointer-events:none;cursor:default;opacity: 0.6;color:grey;text-decoration:none;">Подтвердить аккаунт</a>
+        <?php }?>
     </div>
     </main>
     </body>
