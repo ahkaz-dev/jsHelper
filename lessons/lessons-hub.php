@@ -124,6 +124,11 @@ session_start();
                 <?php } ?>
                 </div>
             <div class="lesson-card">
+                <h3>Основы JavaScript</h3>
+                <p>Базовы понятия и термины, которые требуются для начала работы с JavaScript.</p>
+                <a href="/jshelper/lessons/noauth/osnov-js.php">Обычный курс</a>
+            </div>    
+            <div class="lesson-card">
                 <h3>Переменные и Типы Данных</h3>
                 <p>Научитесь объявлять переменные, узнаете о типах данных и их особенностях в JavaScript.</p>
                 <?php 
@@ -139,54 +144,22 @@ session_start();
             <div class="lesson-card">
                 <h3>Функции</h3>
                 <p>Погрузитесь в основы функций: что это такое, зачем они нужны и как их использовать.</p>
-                <?php 
-                if (isset($_SESSION["auth-header-login"])) { ?>
-                <div class="button-table-line">
-                    <a href="#">Обычный курс</a>
-                    <a href="#">Продвинутый курс</a>
-                </div>
-                <?php } else { ?>
-                    <a href="#">Обычный курс</a>
-                <?php } ?>
+                <a href="\jsHelper\errors\404.php">Обычный курс</a>
             </div>
             <div class="lesson-card">
                 <h3>Циклы</h3>
                 <p>Изучите, как использовать циклы для выполнения повторяющихся операций в вашем коде.</p>
-                <?php 
-                if (isset($_SESSION["auth-header-login"])) { ?>
-                <div class="button-table-line">
-                    <a href="#">Обычный курс</a>
-                    <a href="#">Продвинутый курс</a>
-                </div>
-                <?php } else { ?>
-                    <a href="#">Обычный курс</a>
-                <?php } ?>
+                <a href="\jsHelper\errors\404.php">Обычный курс</a>
             </div>
             <div class="lesson-card">
                 <h3>Объекты</h3>
                 <p>Узнайте, как работать с объектами, их свойствами и методами.</p>
-                <?php 
-                if (isset($_SESSION["auth-header-login"])) { ?>
-                <div class="button-table-line">
-                    <a href="#">Обычный курс</a>
-                    <a href="#">Продвинутый курс</a>
-                </div>
-                <?php } else { ?>
-                    <a href="#">Обычный курс</a>
-                <?php } ?>
+                <a href="\jsHelper\errors\404.php">Обычный курс</a>
             </div>
             <div class="lesson-card">
                 <h3>Массивы</h3>
                 <p>Научитесь эффективно использовать массивы для хранения и обработки данных.</p>
-                <?php 
-                if (isset($_SESSION["auth-header-login"])) { ?>
-                <div class="button-table-line">
-                    <a href="#">Обычный курс</a>
-                    <a href="#">Продвинутый курс</a>
-                </div>
-                <?php } else { ?>
-                    <a href="#">Обычный курс</a>
-                <?php } ?>
+                <a href="\jsHelper\errors\404.php">Обычный курс</a>
             </div>
         </div>
     </main>

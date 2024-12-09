@@ -15,6 +15,7 @@ session_start();
       <span class="small-text"><a  target="_blank" href="https://www.php.net/"></a></span>
       <div class="menu">
         <button class="menu-btn">Помощь</button>
+        <button class="menu-btn" onclick="location.href='http://localhost/jshelper/lessons/lessons-hub.php'">Уроки</button>
         <?php 
         if(!isset($_SESSION["auth-header-login"])) {
           ?>

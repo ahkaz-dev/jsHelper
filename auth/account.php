@@ -16,6 +16,10 @@ if (isset($_SESSION["auth-header-login"])) { ?>
     <header class="top-bar">
           <span class="small-text"><a  target="_blank" href="https://www.php.net/"></a></span>
           <div class="menu">
+            <?php 
+            if (strcasecmp($_SESSION["auth-header-role"], "Админ") === 0) { ?>
+                <button class="menu-btn" onclick="location.href='http://localhost/jshelper/admin/'">Админ-панель</button>
+            <?php } ?>
             <button class="menu-btn" onclick="location.href='http://localhost/jshelper/lessons/lessons-hub.php'">Уроки</button>
             <button class="menu-btn" onclick="location.href='logout.php'">Выход</button>
             <button class="menu-btn" id="up" onclick="location.href='http://localhost/jshelper'">

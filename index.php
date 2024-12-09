@@ -75,9 +75,15 @@ require_once './db/dublicatemessage.php';
               <a href="lessons/authi/prod-vedenie.php">Введение+</a>
             <?php } ?>
           </li>
-          <li>Основы JavaScript</li>
-          <li>Качество кода</li>
-          <li>Типы данных</li>
+          <li>
+            <a href="lessons/noauth/osnov-js.php">Основы JavaScript</a>
+          </li>
+          <li>
+            <a href="/jsHelper/errors/404.php">Типы Данных</a>
+          </li>
+          <li>
+            <a href="/jsHelper/errors/404.php">Функции</a>
+          </li>
         </ul>
       </div>
       <div class="right">
