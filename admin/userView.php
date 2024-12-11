@@ -233,7 +233,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         } else {
             $stmt = $pdo->prepare(
-                "INSERT INTO users (Login, StatusRole, Password, Email) 
+                "INSERT INTO users (Login, UserRole, Password, Email) 
                  VALUES (:loginUser, :access, :password, :Email)"
             );
             $stmt->bindParam(':loginUser', $loginUser, PDO::PARAM_STR);
