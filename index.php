@@ -46,7 +46,7 @@ require_once './db/dublicatemessage.php';
     <header class="top-bar">
       <span class="small-text"><a  target="_blank" href="https://www.php.net/">сделано с помощью php</a></span>
       <div class="menu">
-        <button class="menu-btn">Помощь</button>
+        <button class="menu-btn" onclick="location.href='help.php'">Помощь</button>
         <button class="menu-btn" onclick="location.href='lessons/lessons-hub.php'">Уроки</button>
         <?php 
         if(!isset($_SESSION["auth-header-login"])) {
@@ -76,7 +76,7 @@ require_once './db/dublicatemessage.php';
                 <a href="lessons/noauth/osnov-js.php">Основы JavaScript</a>
               </li>
               <li>
-                <a href="lessons/noauth/typeData.php">Типы Данных</a>
+                <a href="lessons/noauth/peremenie.php">Переменные</a>
               </li>
               <li>
                 <a href="lessons/noauth/funtcion.php">Функции</a>
@@ -86,13 +86,13 @@ require_once './db/dublicatemessage.php';
               <a href="lessons/authi/prod-vedenie.php">Введение+</a>
             </li>
             <li>
-              <a href="lessons/authi/osnov-js.php">Основы JavaScript+</a>
+              <a href="lessons/noauth/osnov-js.php">Основы JavaScript</a>
             </li>
             <li>
-              <a href="lessons/authi/typeData.php">Типы Данных+</a>
+              <a href="lessons/authi/prod-peremenie.php">Переменные+</a>
             </li>
             <li>
-              <a href="lessons/authi/funtcion.php">Функции+</a>
+              <a href="errors/404.php">Функции+</a>
             </li>
           
           <?php }
@@ -104,7 +104,7 @@ require_once './db/dublicatemessage.php';
                 <a href="lessons/noauth/osnov-js.php">Основы JavaScript</a>
               </li>
               <li>
-                <a href="lessons/noauth/typeData.php">Типы Данных</a>
+                <a href="lessons/noauth/peremenie.php">Переменные</a>
               </li>
               <li>
                 <a href="lessons/noauth/funtcion.php">Функции</a>
@@ -151,7 +151,7 @@ require_once './db/dublicatemessage.php';
         <a href="auth/login.php">
           <li>Вход</li>
         </a>
-        <a href="#">
+        <a href="help.php">
           <li>Помощь</li>
         </a>
       </ul>

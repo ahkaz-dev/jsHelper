@@ -28,8 +28,13 @@ document.addEventListener('DOMContentLoaded', function() {
             emailInput.value = "";
             accessInput.value = "";
             wishesId.value = "";
-            whosend.value = "";
-            message.value = "";
+            try {
+                whosend.value = "";
+                message.value = "";    
+            } catch (error) {
+                
+            }
+
 
         } else {
             submitButton.classList.remove('active');
@@ -47,10 +52,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const cells = row.querySelectorAll('td');
             userId.value = cells[0].textContent.trim();
 
-            whosend.value = cells[2].textContent.trim();
-            message.value = cells[1].textContent.trim();
+            try {
+                whosend.value = cells[2].textContent.trim();
+                message.value = cells[1].textContent.trim();
+      
+            } catch (error) {
+            }
 
-            
             loginUserInput.value = cells[1].textContent.trim();
             passwordInput.value = cells[2].textContent.trim();
             emailInput.value = cells[3].textContent.trim();

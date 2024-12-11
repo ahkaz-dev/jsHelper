@@ -89,7 +89,7 @@ session_start();
 <header class="top-bar">
       <span class="small-text"><a  target="_blank" href="https://www.php.net/"></a></span>
       <div class="menu">
-        <button class="menu-btn">Помощь</button>
+        <button class="menu-btn" onclick="location.href='http://localhost/jshelper/help.php'">Помощь</button>
         <?php 
         if(!isset($_SESSION["auth-header-login"])) {
           ?>
@@ -129,16 +129,16 @@ session_start();
                 <a href="/jshelper/lessons/noauth/osnov-js.php">Обычный курс</a>
             </div>    
             <div class="lesson-card">
-                <h3>Переменные и Типы Данных</h3>
-                <p>Научитесь объявлять переменные, узнаете о типах данных и их особенностях в JavaScript.</p>
+                <h3>Переменные</h3>
+                <p>Научитесь объявлять переменные, узнаете об их особенностях в JavaScript.</p>
                 <?php 
                 if (isset($_SESSION["auth-header-login"])) { ?>
                 <div class="button-table-line">
-                    <a href="#">Обычный курс</a>
-                    <a href="#">Продвинутый курс</a>
+                    <a href="/jshelper/lessons/noauth/peremenie.php">Обычный курс</a>
+                    <a href="/jshelper/lessons/authi/prod-peremenie.php">Продвинутый курс</a>
                 </div>
                 <?php } else { ?>
-                    <a href="#">Обычный курс</a>
+                    <a href="/jshelper/lessons/noauth/peremenie.php">Обычный курс</a>
                 <?php } ?>
             </div>
             <div class="lesson-card">

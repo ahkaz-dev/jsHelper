@@ -50,7 +50,7 @@ if (!isset($_SESSION["auth-header"])) {
 <header class="top-bar">
       <span class="small-text"><a  target="_blank" href="https://www.php.net/"></a></span>
       <div class="menu">
-        <button class="menu-btn">Помощь</button>
+        <button class="menu-btn"  onclick="location.href='http://localhost/jshelper/help.php'">Помощь</button>
         <button class="menu-btn" onclick="location.href='http://localhost/jshelper/auth/account.php'">Аккаунт</button>
         <button class="menu-btn" onclick="location.href='http://localhost/jshelper/auth/logout.php'">Выход</button>
         <button class="menu-btn" id="up" onclick="location.href='http://localhost/jshelper'">

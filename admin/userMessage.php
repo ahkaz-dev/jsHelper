@@ -160,7 +160,7 @@ if (!isset($_SESSION["auth-header"])) {
 
         <textarea placeholder="Отзыв" name='message' id='message' class="form-input" rows="10" cols="33" required maxlength='550'></textarea>
         
-        <input type="text" placeholder="Пароль" name="whosend" id="whosend" style="margin-bottom:0px;" maxlength="25" required>
+        <input type="text" placeholder="Юзернейм" name="whosend" id="whosend" style="margin-bottom:0px;" maxlength="25" required>
         <span style="opacity:0.75;font-size:15px">Пример: Захар</span>
 
         <br><br>
