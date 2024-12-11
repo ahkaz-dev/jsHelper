@@ -67,19 +67,20 @@ require_once './db/dublicatemessage.php';
       <div class="left">
         <ul class="topics">
           <?php 
-          if ($_SESSION["auth-header-role"] == "Пользователь") { ?>
-            <li>
-              <a href="lessons/noauth/vedenie.php">Введение</a>
-            </li>
-            <li>
-              <a href="lessons/noauth/osnov-js.php">Основы JavaScript</a>
-            </li>
-            <li>
-              <a href="lessons/noauth/typeData.php">Типы Данных</a>
-            </li>
-            <li>
-              <a href="lessons/noauth/funtcion.php">Функции</a>
-            </li>
+          if (isset($_SESSION["auth-header"])) {
+            if ($_SESSION["auth-header-role"] == "Пользователь") { ?>
+              <li>
+                <a href="lessons/noauth/vedenie.php">Введение</a>
+              </li>
+              <li>
+                <a href="lessons/noauth/osnov-js.php">Основы JavaScript</a>
+              </li>
+              <li>
+                <a href="lessons/noauth/typeData.php">Типы Данных</a>
+              </li>
+              <li>
+                <a href="lessons/noauth/funtcion.php">Функции</a>
+              </li>
           <?php } else if ($_SESSION["auth-header-role"] == "Продвинутый" OR $_SESSION["auth-header-role"] == "Админ") { ?>
             <li>
               <a href="lessons/authi/prod-vedenie.php">Введение+</a>
@@ -95,6 +96,20 @@ require_once './db/dublicatemessage.php';
             </li>
           
           <?php }
+          } else { ?>
+                        <li>
+                <a href="lessons/noauth/vedenie.php">Введение</a>
+              </li>
+              <li>
+                <a href="lessons/noauth/osnov-js.php">Основы JavaScript</a>
+              </li>
+              <li>
+                <a href="lessons/noauth/typeData.php">Типы Данных</a>
+              </li>
+              <li>
+                <a href="lessons/noauth/funtcion.php">Функции</a>
+              </li>
+        <?php }
           ?>
         </ul>
       </div>
