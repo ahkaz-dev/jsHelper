@@ -222,7 +222,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             );
             $stmt->bindParam(':loginUser', $loginUser, PDO::PARAM_STR);
             $stmt->bindParam(':access', $access, PDO::PARAM_STR);
-            $stmt->bindParam(':Stockemail', $email, PDO::PARAM_INT);
+            $stmt->bindParam(':Stockemail', $email, PDO::PARAM_STR);
             $stmt->bindParam(':password', $password, PDO::PARAM_STR);
             $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
 
@@ -234,11 +234,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $stmt = $pdo->prepare(
                 "INSERT INTO users (Login, StatusRole, Password, Email) 
-                 VALUES (:loginUser, :access, :password, :Stockemail)"
+                 VALUES (:loginUser, :access, :password, :Email)"
             );
             $stmt->bindParam(':loginUser', $loginUser, PDO::PARAM_STR);
             $stmt->bindParam(':access', $access, PDO::PARAM_STR);
-            $stmt->bindParam(':Stockemail', $email, PDO::PARAM_INT);
+            $stmt->bindParam(':Email', $email, PDO::PARAM_STR);
             $stmt->bindParam(':password', $password, PDO::PARAM_STR);
 
             if ($stmt->execute()) {
