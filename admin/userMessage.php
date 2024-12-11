@@ -107,6 +107,11 @@ table tbody tr:hover {
     box-sizing: border-box;
 }
 
+#slideForm {
+    top: 10%;
+    position: relative;
+}
+
 #slideForm button {
     padding: 10px 20px;
     margin-right: 10px;
@@ -127,7 +132,7 @@ if (!isset($_SESSION["auth-header"])) {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Пользователи</title>
+            <title>Отзывы</title>
             <link rel="stylesheet" type="text/css" href="../static/css/account/account.css">
         </head>
 <header class="top-bar">
@@ -143,7 +148,7 @@ if (!isset($_SESSION["auth-header"])) {
       </div>
 </header> 
 
-<button class="btn" id="toggleButton">Добавить новый аккаунт</button>
+<button class="btn" id="toggleButton">Добавить новый отзыв</button>
 
 
 <div id="slideBlock" class="slide-block">
@@ -153,18 +158,10 @@ if (!isset($_SESSION["auth-header"])) {
             <input type="text" id="userId" name="userId" readonly style="width: max-content;">
         </div>
 
-        <input type="text" placeholder="Логин" name="loginUser" id="loginUser" style="margin-bottom:0px;" maxlength="15" required>
-        <span style="opacity:0.75;font-size:15px">Пример: Login</span>
+        <textarea placeholder="Отзыв" name='message' id='message' class="form-input" rows="10" cols="33" required maxlength='550'></textarea>
         
-        <input type="text" placeholder="Пароль" name="password" id="password" style="margin-bottom:0px;" maxlength="25" required>
-        <span style="opacity:0.75;font-size:15px">Пример: qwerty123</span>
-
-        <input type="email" placeholder="Почта" name="email" id="email" style="margin-bottom:0px;" maxlength="25" required>
-        <span style="opacity:0.75;font-size:15px">Пример: mygmail@gmail.com</span>
-
-        <input type="text" placeholder="Роль доступа" name="access" id="access" pattern="^(Пользователь|Модератор|Админ)$" style="margin-bottom:0px;" maxlength="25" required>
-        <span style="opacity:0.75;font-size:15px">Пример: Пользователь, Модератор, Админ</span>
-
+        <input type="text" placeholder="Пароль" name="whosend" id="whosend" style="margin-bottom:0px;" maxlength="25" required>
+        <span style="opacity:0.75;font-size:15px">Пример: Захар</span>
 
         <br><br>
         <button type="submit" id="updateButton" name="updateRequest">Редактировать</button>
@@ -176,7 +173,7 @@ if (!isset($_SESSION["auth-header"])) {
 <?php
         try {
             // Пытаемся найти данные в базе
-            $stmt = $pdo->prepare("SELECT * FROM users ORDER BY userId ASC");
+            $stmt = $pdo->prepare("SELECT * FROM wishesbyusers ORDER BY wishesId ASC");
             $stmt->execute();
 
         } catch (PDOException $e) {
@@ -189,28 +186,20 @@ if (!isset($_SESSION["auth-header"])) {
         <thead>
             <tr>
                 <th>Идентификатор</th>
-                <th>Логин</th>
-                <th>Пароль</th>
-                <th>Почта</th>
-                <th>Роль доступа</th>
+                <th>Отзыв</th>
+                <th>От кого</th>
                 <th>Действия</th>
             </tr>
         </thead>
         <tbody>
         <?php
         while ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
-            if ($row->Login == $_SESSION["auth-header-login"] AND $row->Password == $_SESSION["auth-header-pass"]) {
-                echo '<tr class="list-items" style="pointer-events: none; background-color:#999999d4;">';
-            } else {
-                echo '<tr class="list-items">';
-            }
-            echo '<td>' . htmlspecialchars($row->UserId) . '</td>';
-            echo '<td>' . htmlspecialchars($row->Login) . '</td>';
-            echo '<td>' . htmlspecialchars($row->Password) . '</td>';
-            echo '<td>' . htmlspecialchars($row->Email) . '</td>';
-            echo '<td>' . htmlspecialchars($row->UserRole) . '</td>';
+            echo '<tr class="list-items">';
+            echo '<td>' . htmlspecialchars($row->WishesId) . '</td>';
+            echo '<td>' . htmlspecialchars($row->Message) . '</td>';
+            echo '<td>' . htmlspecialchars($row->Whosend) . '</td>';
             echo '<td>
-                      <a href="?userId='. htmlspecialchars($row->UserId) .'">удалить</a>
+                      <a href="?WishesId='. htmlspecialchars($row->WishesId) .'">удалить</a>
                   </td>';
             echo '</tr>';
         }
@@ -223,27 +212,21 @@ if (!isset($_SESSION["auth-header"])) {
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $access = trim($_POST['access']);
-    $password = trim($_POST['password']);
-    $email = trim($_POST['email']);
-    $loginUser = trim($_POST['loginUser']);
-    $userId = trim($_POST['userId'] ?? '');
+    $whosend = trim($_POST['whosend']);
+    $message = trim($_POST['message']);
+    $WishesId = trim($_POST['userId'] ?? '');
 
     try {
-        if (!empty($userId)) {
+        if (!empty($WishesId)) {
             $stmt = $pdo->prepare(
-                "UPDATE users 
-                 SET Login = :loginUser, 
-                     UserRole = :access, 
-                     Email = :Stockemail, 
-                     Password = :password 
-                 WHERE userId = :userId"
+                "UPDATE wishesbyusers 
+                 SET Message = :Message, 
+                     Whosend = :Whosend, 
+                 WHERE WishesId = :WishesId"
             );
-            $stmt->bindParam(':loginUser', $loginUser, PDO::PARAM_STR);
-            $stmt->bindParam(':access', $access, PDO::PARAM_STR);
-            $stmt->bindParam(':Stockemail', $email, PDO::PARAM_STR);
-            $stmt->bindParam(':password', $password, PDO::PARAM_STR);
-            $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+            $stmt->bindParam(':Message', $message, PDO::PARAM_STR);
+            $stmt->bindParam(':Whosend', $whosend, PDO::PARAM_STR);
+            $stmt->bindParam(':WishesId', $WishesId, PDO::PARAM_INT);
 
             if ($stmt->execute()) {
                 $message = "Запись успешно обновлена.";
@@ -252,13 +235,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         } else {
             $stmt = $pdo->prepare(
-                "INSERT INTO users (Login, UserRole, Password, Email) 
-                 VALUES (:loginUser, :access, :password, :Email)"
+                "INSERT INTO wishesbyusers (Message, Whosend) 
+                 VALUES (:Message, :Whosend)"
             );
-            $stmt->bindParam(':loginUser', $loginUser, PDO::PARAM_STR);
-            $stmt->bindParam(':access', $access, PDO::PARAM_STR);
-            $stmt->bindParam(':Email', $email, PDO::PARAM_STR);
-            $stmt->bindParam(':password', $password, PDO::PARAM_STR);
+            $stmt->bindParam(':Message', $message, PDO::PARAM_STR);
+            $stmt->bindParam(':Whosend', $whosend, PDO::PARAM_STR);
 
             if ($stmt->execute()) {
                 $message = "Запись успешно добавлена.";
@@ -269,7 +250,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Перенаправление после успешного выполнения
         echo '<script type="text/javascript">';
-        echo 'window.location.href = "http://localhost/jshelper/admin/userView.php";';
+        echo 'window.location.href = "http://localhost/jshelper/admin/userMessage.php";';
         echo '</script>';
     } catch (PDOException $e) {
         $message = "Ошибка: " . $e->getMessage();
@@ -277,18 +258,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 
-if (isset($_GET['userId'])) {
-    $Id = $_GET['userId'];
+if (isset($_GET['WishesId'])) {
+    $Id = $_GET['WishesId'];
 
     try {
         // Подготовка запроса с использованием параметра
-        $stmt = $pdo->prepare("DELETE FROM `users` WHERE `userId` = :userId");
-        $stmt->bindParam(':userId', $Id, PDO::PARAM_INT); // Привязка параметра
+        $stmt = $pdo->prepare("DELETE FROM `wishesbyusers` WHERE `WishesId` = :WishesId");
+        $stmt->bindParam(':WishesId', $Id, PDO::PARAM_INT); // Привязка параметра
 
         // Выполнение запроса
         if ($stmt->execute()) {
             echo '<script type="text/javascript">';
-            echo 'window.location.href = "http://localhost/jshelper/admin/userView.php";';
+            echo 'window.location.href = "http://localhost/jshelper/admin/userMessage.php";';
             echo '</script>';
         } else {
             echo "Ошибка при удалении записи.";

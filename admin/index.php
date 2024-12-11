@@ -67,7 +67,7 @@ if (!isset($_SESSION["auth-header"])) {
         <div class="cell">
             <h2>Пожелания сайта</h2>
             <p>Пожелания-сообщения из форма главной страницы</p>
-            <a href="#" class="btn">Подробнее</a>
+            <a href="userMessage.php" class="btn">Подробнее</a>
         </div>
     </div> 
 </body>
